@@ -1,0 +1,42 @@
+---
+import Layout from "../layout/index.astro";
+---
+
+<Layout>
+  <form id="form-login">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label"
+        >Endereço de e-mail</label
+      >
+      <input type="email" class="form-control" id="email" required />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Senha</label>
+      <input type="password" class="form-control" id="password" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Entrar</button>
+  </form>
+</Layout>
+
+<style>
+  #form-login {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector("#form-login");
+    if (!form) return;
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      // const email = document.querySelector("#email").value;
+      // const password = document.querySelector("#password").value;
+
+      window.location.href = "/";
+    });
+  });
+</script>

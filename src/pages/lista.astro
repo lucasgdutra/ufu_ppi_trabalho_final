@@ -1,0 +1,101 @@
+---
+import Layout from "../layout/index.astro";
+import Card from "../components/animal_card.astro";
+---
+
+<Layout>
+  <div class="my-5">
+    <form class="d-flex mb-3" role="search" id="search-form">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Pesquisar"
+        aria-label="Pesquisar"
+      />
+      <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+    </form>
+    <div>
+      <Card
+        name="onça"
+        description="A onça-pintada é o maior felino das Américas e o terceiro maior do mundo, depois do tigre e do leão. É um animal solitário, territorialista e carnívoro."
+        scientific_name="panthera onca"
+        animal_class="Mamífero"
+        risk_of_extinction="Baixo"
+        image="img/onca.jpg"
+      />
+
+      <Card
+        name="tucano"
+        description="O tucano é uma ave conhecida por seu bico grande e colorido. Vive em florestas tropicais, e alimenta-se de frutas, insetos e, ocasionalmente, de pequenos vertebrados."
+        scientific_name="ramphastos toco"
+        animal_class="Ave"
+        risk_of_extinction="Médio"
+        image="img/tucano.jpg"
+      />
+
+      <Card
+        name="boto-cor-de-rosa"
+        description="O boto-cor-de-rosa é um mamífero aquático encontrado na região amazônica. É conhecido por sua coloração rosada e é o maior golfinho de água doce do mundo."
+        scientific_name="inia geoffrensis"
+        animal_class="Mamífero"
+        risk_of_extinction="Alto"
+        image="img/boto.jpg"
+      />
+
+      <Card
+        name="jabuti"
+        description="O jabuti é um réptil que possui carapaça óssea, e pode viver por muitos anos. É um animal lento e herbívoro, podendo viver tanto em florestas quanto em áreas abertas."
+        scientific_name="chelonoidis denticulata"
+        animal_class="Réptil"
+        risk_of_extinction="Médio"
+        image="img/jabuti.jpg"
+      />
+
+      <Card
+        name="arara-azul"
+        description="A arara-azul é uma ave vistosa e barulhenta, conhecida por suas penas azuis brilhantes e seu bico forte. Vive em áreas de floresta tropical e tem uma dieta variada que inclui frutas, nozes e sementes."
+        scientific_name="anodorhynchus hyacinthinus"
+        animal_class="Ave"
+        risk_of_extinction="Alto"
+        image="img/arara-azul.jpg"
+      />
+
+      <Card
+        name="pirarucu"
+        description="O pirarucu é um dos maiores peixes de água doce do mundo, podendo atingir até 3 metros de comprimento. É nativo da Amazônia e tem uma dieta carnívora, alimentando-se de outros peixes e até mesmo de pequenos animais."
+        scientific_name="arapaima gigas"
+        animal_class="Peixe"
+        risk_of_extinction="Baixo"
+        image="img/pirarucu.jpg"
+      />
+    </div>
+  </div>
+</Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("search-form");
+    if (!form) return;
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const search = form.querySelector("input")?.value;
+      if (!search) {
+        const cards = document.querySelectorAll(".card");
+        cards.forEach(function (card) {
+          card.classList.remove("d-none");
+        });
+        return;
+      }
+      const cards = document.querySelectorAll(".card");
+      cards.forEach(function (card) {
+        const name = card.querySelector(".card-title")?.textContent;
+        if (!name) return;
+        if (name.toLowerCase().includes(search.toLowerCase())) {
+          card.classList.remove("d-none");
+        } else {
+          card.classList.add("d-none");
+        }
+      });
+    });
+  });
+</script>

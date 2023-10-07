@@ -1,0 +1,71 @@
+---
+export interface Props {
+  name: string;
+  description: string;
+  scientific_name: string;
+  animal_class: string;
+  risk_of_extinction: "Baixo" | "Médio" | "Alto";
+  image: string;
+}
+
+let {
+  name,
+  description,
+  scientific_name,
+  animal_class,
+  risk_of_extinction,
+  image,
+} = Astro.props;
+name = name || "Animal Name";
+scientific_name = scientific_name || "Scientific Name";
+animal_class = animal_class || "Animal Class";
+risk_of_extinction = risk_of_extinction || "Risk of Extinction";
+const badge_color =
+  risk_of_extinction === "Baixo"
+    ? "text-bg-success"
+    : risk_of_extinction === "Médio"
+    ? "text-bg-warning"
+    : "text-bg-danger";
+---
+
+<div class="card mb-3">
+  <div class="row g-0 h-100">
+    <div class="col-md-4 h-100">
+      <img
+        src={image}
+        class="img-fluid rounded-start"
+        alt={`imagem de ${name}`}
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{name}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{scientific_name}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">{animal_class}</h6>
+        <span class={`badge ${badge_color}`}>{risk_of_extinction}</span>
+        <p class="card-text">
+          {description}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @media screen and (min-width: 768px) {
+    .card {
+      max-height: 15rem;
+    }
+  }
+
+  .card img {
+    max-height: 15rem;
+    width: 100%;
+    object-fit: cover;
+  }
+  .badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+</style>

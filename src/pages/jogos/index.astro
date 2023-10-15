@@ -1,0 +1,69 @@
+---
+import Layout from "../../layout/index.astro";
+import Card from "../../components/game_list/card.astro";
+import type { Props as CardProps } from "../../components/game_list/card.astro";
+
+const cards: CardProps[] = [
+  {
+    title: "Animais Variados",
+    difficulty: "Fácil",
+    link: "/jogos/variados",
+  },
+  {
+    title: "Mamíferos",
+    difficulty: "Médio",
+    link: "/jogos/variados",
+  },
+  {
+    title: "Animais Aquáticos",
+    difficulty: "Difícil",
+    link: "/jogos/variados",
+  },
+  {
+    title: "Aves",
+    difficulty: "Difícil",
+    link: "/jogos/variados",
+  },
+  {
+    title: "Répteis",
+    difficulty: "Médio",
+    link: "/jogos/variados",
+  },
+  {
+    title: "Anfíbios",
+    difficulty: "Médio",
+    link: "/jogos/variados",
+  },
+  {
+    title: "Invertebrados",
+    difficulty: "Difícil",
+    link: "/jogos/variados",
+  },
+  {
+    title: "Animais de Estimação",
+    difficulty: "Fácil",
+    link: "/jogos/variados",
+  },
+  {
+    title: "Animais Selvagens",
+    difficulty: "Difícil",
+    link: "/jogos/variados",
+  },
+  {
+    title: "Animais Noturnos",
+    difficulty: "Médio",
+    link: "/jogos/variados",
+  },
+  {
+    title: "Insetos",
+    difficulty: "Fácil",
+    link: "/jogos/variados",
+  },
+];
+---
+
+<Layout>
+  <div class="d-flex gap-3 justify-content-evenly mt-5 flex-wrap">
+    {cards.map((card) => <Card {...card} />)}
+  </div>
+</Layout>

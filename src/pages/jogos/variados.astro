@@ -1,0 +1,225 @@
+---
+import Layout from "../../layout/index.astro";
+import GameCard from "../../components/game_card.astro";
+import type { Props as GameCardProps } from "../../components/game_card.astro";
+
+let cards: GameCardProps[] = [
+  {
+    name: "onça",
+    scientific_name: "panthera onca",
+    animal_class: "Mamífero",
+    risk_of_extinction: "Baixo",
+    image: "/img/onca.jpg",
+  },
+  {
+    name: "tucano",
+    scientific_name: "ramphastos toco",
+    animal_class: "Ave",
+    risk_of_extinction: "Médio",
+    image: "/img/tucano.jpg",
+  },
+  {
+    name: "boto-cor-de-rosa",
+    scientific_name: "inia geoffrensis",
+    animal_class: "Mamífero",
+    risk_of_extinction: "Alto",
+    image: "/img/boto.jpg",
+  },
+  {
+    name: "jabuti",
+    scientific_name: "chelonoidis denticulata",
+    animal_class: "Réptil",
+    risk_of_extinction: "Médio",
+    image: "/img/jabuti.jpg",
+  },
+  {
+    name: "arara-azul",
+    scientific_name: "anodorhynchus hyacinthinus",
+    animal_class: "Ave",
+    risk_of_extinction: "Alto",
+    image: "/img/arara-azul.jpg",
+  },
+  {
+    name: "pirarucu",
+    scientific_name: "arapaima gigas",
+    animal_class: "Peixe",
+    risk_of_extinction: "Baixo",
+    image: "/img/pirarucu.jpg",
+  },
+  {
+    name: "onça",
+    scientific_name: "panthera onca",
+    animal_class: "Mamífero",
+    risk_of_extinction: "Baixo",
+    image: "/img/onca.jpg",
+  },
+  {
+    name: "tucano",
+    scientific_name: "ramphastos toco",
+    animal_class: "Ave",
+    risk_of_extinction: "Médio",
+    image: "/img/tucano.jpg",
+  },
+  {
+    name: "boto-cor-de-rosa",
+    scientific_name: "inia geoffrensis",
+    animal_class: "Mamífero",
+    risk_of_extinction: "Alto",
+    image: "/img/boto.jpg",
+  },
+  {
+    name: "jabuti",
+    scientific_name: "chelonoidis denticulata",
+    animal_class: "Réptil",
+    risk_of_extinction: "Médio",
+    image: "/img/jabuti.jpg",
+  },
+  {
+    name: "arara-azul",
+    scientific_name: "anodorhynchus hyacinthinus",
+    animal_class: "Ave",
+    risk_of_extinction: "Alto",
+    image: "/img/arara-azul.jpg",
+  },
+  {
+    name: "pirarucu",
+    scientific_name: "arapaima gigas",
+    animal_class: "Peixe",
+    risk_of_extinction: "Baixo",
+    image: "/img/pirarucu.jpg",
+  },
+];
+
+const shuffle = (array: any[]) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+
+cards = shuffle(cards);
+---
+
+<Layout>
+  <div class="mt-5 d-flex flex-row justify-content-between">
+    <h5>Pares encontrados: <span id="score">0</span></h5>
+    <h5>Quantidade de movimentos: <span id="moves">0</span></h5>
+    <h5>Tempo: <span id="time">00:00</span></h5>
+  </div>
+  <div class="d-flex gap-1 justify-content-evenly my-5 flex-wrap">
+    {
+      cards.map((card) => (
+        <GameCard
+          name={card.name}
+          scientific_name={card.scientific_name}
+          animal_class={card.animal_class}
+          risk_of_extinction={card.risk_of_extinction}
+          image={card.image}
+        />
+      ))
+    }
+  </div>
+</Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    let score = 0;
+    let time = 0;
+    let moves = 0;
+    let timerInterval: number;
+
+    function syncScore() {
+      const scoreElement = document.querySelector("#score");
+      if (scoreElement) {
+        scoreElement.innerHTML = score.toString();
+      }
+    }
+
+    function syncMoves() {
+      const movesElement = document.querySelector("#moves");
+      if (movesElement) {
+        movesElement.innerHTML = moves.toString();
+      }
+    }
+
+    function syncTime() {
+      const minutes = Math.floor(time / 60)
+        .toString()
+        .padStart(2, "0");
+      const seconds = (time % 60).toString().padStart(2, "0");
+      const timeElement = document.querySelector("#time");
+      if (timeElement) {
+        timeElement.innerHTML = `${minutes}:${seconds}`;
+      }
+    }
+
+    function checkGameEnd() {
+      const totalCards = document.querySelectorAll(".flip-card-inner").length;
+      const blockedCards = document.querySelectorAll(
+        ".flip-card-inner.blocked",
+      ).length;
+      if (blockedCards === totalCards) {
+        clearInterval(timerInterval); // Stop the timer
+        alert("Jogo finalizado!"); // Alert the user
+      }
+    }
+
+    let flippedCards: HTMLDivElement[] = [];
+    function flipCard(card: HTMLDivElement) {
+      // If the clicked card is already flipped, do nothing
+      if (
+        card.classList.contains("fliped") ||
+        card.classList.contains("blocked")
+      ) {
+        return;
+      }
+
+      moves++;
+      syncMoves();
+
+      // If two cards are already flipped, unflip them and reset the flippedCards array
+      if (flippedCards.length === 2) {
+        const [card1, card2] = flippedCards;
+        card1.classList.remove("fliped");
+        card2.classList.remove("fliped");
+        flippedCards = [];
+      }
+
+      // Flip the clicked card and add it to the flippedCards array
+      card.classList.add("fliped");
+      flippedCards.push(card as HTMLDivElement);
+
+      // After flipping the card, check if there are the same two cards flipped
+      if (flippedCards.length === 2) {
+        const [card1, card2] = flippedCards;
+        if (card1.dataset.animalId === card2.dataset.animalId) {
+          // If they match, block them and increment the score
+          card1.classList.add("blocked");
+          card2.classList.add("blocked");
+          score++;
+          syncScore();
+          flippedCards = [];
+        }
+      }
+    }
+
+    const cards = document.querySelectorAll(".flip-card-inner");
+
+    if (cards) {
+      cards.forEach((card) => {
+        card.addEventListener("click", () => {
+          flipCard(card as HTMLDivElement);
+          checkGameEnd();
+        });
+      });
+    }
+
+    timerInterval = setInterval(() => {
+      time++;
+      syncTime();
+    }, 1000);
+
+    syncScore();
+  });
+</script>

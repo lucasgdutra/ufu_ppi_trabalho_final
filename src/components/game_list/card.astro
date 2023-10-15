@@ -1,17 +1,18 @@
 ---
-interface Props {
+export interface Props {
   title: string;
   difficulty: string;
+  link: string;
 }
 
-let { title, difficulty } = Astro.props;
+let { title, link, difficulty } = Astro.props;
 ---
 
 <div class="card text-center" >
   <div class="card-body">
     <h5 class="card-title">{title}</h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">{difficulty}</h6>
-    <a href="jogo" class="card-link">Jogar</a>
+    <a href={link} class="card-link">Jogar</a>
   </div>
 </div>
 

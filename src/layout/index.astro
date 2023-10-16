@@ -40,7 +40,7 @@ console.log(currentPath);
             <li class="nav-item">
               <a
                 class={`nav-link ${currentPath.includes("lista") && "active"}`}
-                href="lista">Animais</a
+                href="/lista">Animais</a
               >
             </li>
             <li class="nav-item">
@@ -48,13 +48,13 @@ console.log(currentPath);
                 class={`nav-link ${
                   currentPath.includes("ranking") && "active"
                 }`}
-                href="ranking">Ranking</a
+                href="/ranking">Ranking</a
               >
             </li>
             <li class="nav-item">
               <a
                 class={`nav-link ${currentPath.includes("sobre") && "active"}`}
-                href="sobre">Sobre</a
+                href="/sobre">Sobre</a
               >
             </li>
           </ul>
@@ -70,11 +70,11 @@ console.log(currentPath);
                 Usuário
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="admin">Admin</a></li>
+                <li><a class="dropdown-item" href="/admin">Admin</a></li>
 
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                  <a class="dropdown-item" href="login">Login</a>
+                  <a class="dropdown-item" href="/login">Login</a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="#">Logout</a>
@@ -89,7 +89,7 @@ console.log(currentPath);
       <slot />
     </main>
     <footer class="fixed-bottom text-center bg-light">
-      Trabalho de programação para internet feito por: Guilherme Castrilho e
+      Trabalho de programação para internet feito por: Guilherme Castilho e
       Lucas Souza
     </footer>
     <script src="/js/bootstrap.bundle.min.js" is:inline></script>

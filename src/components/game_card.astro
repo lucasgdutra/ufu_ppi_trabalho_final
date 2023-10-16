@@ -1,10 +1,14 @@
 ---
+import { Image } from "astro:assets";
+
+
+
 export interface Props {
   name: string;
   scientific_name: string;
   animal_class: string;
   risk_of_extinction: "Baixo" | "Médio" | "Alto";
-  image: string;
+  image: ImageMetadata;
 }
 
 let { name, scientific_name, animal_class, risk_of_extinction, image } =
@@ -24,7 +28,7 @@ const badge_color =
 <div class="flip-card">
   <div class="card flip-card-inner" data-animal-id={name}>
     <div class="flip-card-back">
-      <img class="card-img-top" src={image} alt="Animal Image" />
+      <Image class="card-img-top" src={image} alt={name} height="200" />
       <div class="card-body p-1 pt-0">
         <h5 class="card-title">{name}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{scientific_name}</h6>
@@ -94,5 +98,3 @@ const badge_color =
     transform: rotateY(180deg);
   }
 </style>
-
-

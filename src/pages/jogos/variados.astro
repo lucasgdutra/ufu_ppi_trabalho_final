@@ -1,94 +1,8 @@
 ---
 import Layout from "../../layout/index.astro";
 import GameCard from "../../components/game_card.astro";
-import type { Props as GameCardProps } from "../../components/game_card.astro";
 
-let cards: GameCardProps[] = [
-  {
-    name: "onça",
-    scientific_name: "panthera onca",
-    animal_class: "Mamífero",
-    risk_of_extinction: "Baixo",
-    image: "/img/onca.jpg",
-  },
-  {
-    name: "tucano",
-    scientific_name: "ramphastos toco",
-    animal_class: "Ave",
-    risk_of_extinction: "Médio",
-    image: "/img/tucano.jpg",
-  },
-  {
-    name: "boto-cor-de-rosa",
-    scientific_name: "inia geoffrensis",
-    animal_class: "Mamífero",
-    risk_of_extinction: "Alto",
-    image: "/img/boto.jpg",
-  },
-  {
-    name: "jabuti",
-    scientific_name: "chelonoidis denticulata",
-    animal_class: "Réptil",
-    risk_of_extinction: "Médio",
-    image: "/img/jabuti.jpg",
-  },
-  {
-    name: "arara-azul",
-    scientific_name: "anodorhynchus hyacinthinus",
-    animal_class: "Ave",
-    risk_of_extinction: "Alto",
-    image: "/img/arara-azul.jpg",
-  },
-  {
-    name: "pirarucu",
-    scientific_name: "arapaima gigas",
-    animal_class: "Peixe",
-    risk_of_extinction: "Baixo",
-    image: "/img/pirarucu.jpg",
-  },
-  {
-    name: "onça",
-    scientific_name: "panthera onca",
-    animal_class: "Mamífero",
-    risk_of_extinction: "Baixo",
-    image: "/img/onca.jpg",
-  },
-  {
-    name: "tucano",
-    scientific_name: "ramphastos toco",
-    animal_class: "Ave",
-    risk_of_extinction: "Médio",
-    image: "/img/tucano.jpg",
-  },
-  {
-    name: "boto-cor-de-rosa",
-    scientific_name: "inia geoffrensis",
-    animal_class: "Mamífero",
-    risk_of_extinction: "Alto",
-    image: "/img/boto.jpg",
-  },
-  {
-    name: "jabuti",
-    scientific_name: "chelonoidis denticulata",
-    animal_class: "Réptil",
-    risk_of_extinction: "Médio",
-    image: "/img/jabuti.jpg",
-  },
-  {
-    name: "arara-azul",
-    scientific_name: "anodorhynchus hyacinthinus",
-    animal_class: "Ave",
-    risk_of_extinction: "Alto",
-    image: "/img/arara-azul.jpg",
-  },
-  {
-    name: "pirarucu",
-    scientific_name: "arapaima gigas",
-    animal_class: "Peixe",
-    risk_of_extinction: "Baixo",
-    image: "/img/pirarucu.jpg",
-  },
-];
+import { animals } from "../../config/index.ts";
 
 const shuffle = (array: any[]) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -98,7 +12,7 @@ const shuffle = (array: any[]) => {
   return array;
 };
 
-cards = shuffle(cards);
+const cards = shuffle([...animals, ...animals]);
 ---
 
 <Layout>

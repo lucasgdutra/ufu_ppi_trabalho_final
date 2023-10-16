@@ -1,11 +1,12 @@
 ---
+import { Image } from "astro:assets";
 export interface Props {
   name: string;
   description: string;
   scientific_name: string;
   animal_class: string;
   risk_of_extinction: "Baixo" | "Médio" | "Alto";
-  image: string;
+  image: ImageMetadata;
   number_of_individuals?: number;
 }
 
@@ -16,7 +17,7 @@ let {
   animal_class,
   risk_of_extinction,
   image,
-  number_of_individuals
+  number_of_individuals,
 } = Astro.props;
 name = name || "Animal Name";
 scientific_name = scientific_name || "Scientific Name";
@@ -33,8 +34,9 @@ const badge_color =
 <div class="card mb-3">
   <div class="row g-0 h-100">
     <div class="col-md-4 h-100">
-      <img
+      <Image
         src={image}
+        width="450"
         class="img-fluid rounded-start"
         alt={`imagem de ${name}`}
       />
@@ -42,9 +44,13 @@ const badge_color =
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">{name}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Nome Cientifico: {scientific_name}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">
+          Nome Cientifico: {scientific_name}
+        </h6>
         <h6 class="card-subtitle mb-2 text-muted">Classe: {animal_class}</h6>
-        <h6 class="card-subtitle mb-2 text-muted">Número de individuos: {number_of_individuals || 'Desconhecido'}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">
+          Número de individuos: {number_of_individuals || "Desconhecido"}
+        </h6>
         <span class={`badge ${badge_color}`}>{risk_of_extinction}</span>
         <p class="card-text">
           {description}

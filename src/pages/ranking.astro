@@ -1,5 +1,22 @@
 ---
 import Layout from "../layout/index.astro";
+import { users } from "../config/index.ts";
+
+const sortedUsers = users.sort((a, b) => {
+  if (a.points > b.points) {
+    return -1;
+  }
+  if (a.points < b.points) {
+    return 1;
+  }
+  if (a.time_record < b.time_record) {
+    return -1;
+  }
+  if (a.time_record > b.time_record) {
+    return 1;
+  }
+  return 0;
+});
 ---
 
 <Layout>
@@ -13,24 +30,16 @@ import Layout from "../layout/index.astro";
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>43</td>
-        <td>00:45</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>35</td>
-        <td>00:57</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>23</td>
-        <td>01:26</td>
-      </tr>
+      {
+        sortedUsers.map((user, index) => (
+          <tr>
+            <th scope="row">{index + 1}</th>
+            <td>{user.name}</td>
+            <td>{user.points}</td>
+            <td>{user.time_record}</td>
+          </tr>
+        ))
+      }
     </tbody>
   </table>
 </Layout>

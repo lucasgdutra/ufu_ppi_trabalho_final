@@ -3,64 +3,9 @@ import Layout from "../layout/index.astro";
 import Card from "../components/animal_card.astro";
 import type { Props as CardProps } from "../components/animal_card.astro";
 
-let cards: CardProps[] = [
-  {
-    name: "onça",
-    scientific_name: "panthera onca",
-    animal_class: "Mamífero",
-    risk_of_extinction: "Baixo",
-    image: "/img/onca.jpg",
-    description:
-      "A onça-pintada é o maior felino das Américas e o terceiro maior do mundo, depois do tigre e do leão. É um animal solitário, territorialista e carnívoro.",
-  },
-  {
-    name: "tucano",
-    scientific_name: "ramphastos toco",
-    animal_class: "Ave",
-    risk_of_extinction: "Médio",
-    image: "/img/tucano.jpg",
-    description:
-      "O tucano é uma ave conhecida por seu bico grande e colorido. Vive em florestas tropicais, e alimenta-se de frutas, insetos e, ocasionalmente, de pequenos vertebrados.",
-  },
-  {
-    name: "boto-cor-de-rosa",
-    scientific_name: "inia geoffrensis",
-    animal_class: "Mamífero",
-    risk_of_extinction: "Alto",
-    image: "/img/boto.jpg",
-    description:
-      "O boto-cor-de-rosa é um mamífero aquático encontrado na região amazônica. É conhecido por sua coloração rosada e é o maior golfinho de água doce do mundo.",
-  },
-  {
-    name: "jabuti",
-    scientific_name: "chelonoidis denticulata",
-    animal_class: "Réptil",
-    risk_of_extinction: "Médio",
-    image: "/img/jabuti.jpg",
-    description:
-      "O jabuti é um réptil que possui carapaça óssea, e pode viver por muitos anos. É um animal lento e herbívoro, podendo viver tanto em florestas quanto em áreas abertas.",
-  },
-  {
-    name: "arara-azul",
-    scientific_name: "anodorhynchus hyacinthinus",
-    animal_class: "Ave",
-    risk_of_extinction: "Alto",
-    image: "/img/arara-azul.jpg",
-    description:
-      "A arara-azul é uma ave vistosa e barulhenta, conhecida por suas penas azuis brilhantes e seu bico forte. Vive em áreas de floresta tropical e tem uma dieta variada que inclui frutas, nozes e sementes.",
-  },
-  {
-    name: "pirarucu",
-    scientific_name: "arapaima gigas",
-    animal_class: "Peixe",
-    risk_of_extinction: "Baixo",
-    image: "/img/pirarucu.jpg",
-    description:
-      "O pirarucu é um dos maiores peixes de água doce do mundo, podendo atingir até 3 metros de comprimento. É nativo da Amazônia e tem uma dieta carnívora, alimentando-se de outros peixes e até mesmo de pequenos animais.",
-  },
-];
+import { animals as cards } from "../config/index.ts";
 
-cards = cards.sort(function (a, b) {
+const sortedCards = cards.sort(function (a, b) {
   if (a.name < b.name) return -1;
   if (a.name > b.name) return 1;
   return 0;
@@ -79,7 +24,20 @@ cards = cards.sort(function (a, b) {
       <button class="btn btn-outline-success" type="submit">Pesquisar</button>
     </form>
     <div>
-      {cards.map((card) => <Card {...card} />)}
+      {
+        sortedCards.map((card) => (
+          <Card
+            name={card.name}
+            scientific_name={card.scientific_name}
+            animal_class={card.animal_class}
+            risk_of_extinction={
+              card.risk_of_extinction as CardProps["risk_of_extinction"]
+            }
+            image={card.image}
+            description={card.description}
+          />
+        ))
+      }
     </div>
   </div>
 

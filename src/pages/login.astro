@@ -28,7 +28,7 @@ import Layout from "../layout/index.astro";
   }
 </style>
 
-<script>
+<script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("#form-login");
     if (!form) return;

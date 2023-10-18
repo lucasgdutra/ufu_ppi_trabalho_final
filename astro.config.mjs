@@ -1,24 +1,26 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-
-import vercelStatic from '@astrojs/vercel/static';
+import vercelStatic from "@astrojs/vercel/static";
 
 // https://astro.build/config
 export default defineConfig({
   output: "static",
   image: {
     service: {
-      entrypoint: 'astro/assets/services/noop'
-    }
+      entrypoint: "astro/assets/services/noop",
+    },
   },
   adapter: vercelStatic({
-    
     imagesConfig: {
       sizes: [200, 320, 450, 640, 1280],
-      "formats": ["image/avif", "image/webp"],
-      domains:[],
-     
+      formats: ["image/avif", "image/webp"],
+      domains: [],
     },
     imageService: true,
-  })
+  }),
+
+  compressHTML: false,
+  build: {
+    inlineStylesheets: "never",
+  },
 });

@@ -1,7 +1,8 @@
 ---
 import "../styles/global.css";
 const currentPath = Astro.url.pathname;
-console.log(currentPath);
+import { Image } from "astro:assets";
+import Logo from '../assets/img/logo.svg'
 ---
 
 <html lang="pt-br">
@@ -14,9 +15,10 @@ console.log(currentPath);
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand text-wrap" href="/"
-          >Lembre-se de mim - Jogo da memória</a
-        >
+        <a class="navbar-brand text-wrap" href="/">
+          <Image class="img-fluid" src={Logo} alt="logomarca - imagem vetorizada de um panda de frente" height={50} width={50}/>
+          Lembre-se de mim - Jogo da memória
+        </a>
         <button
           class="navbar-toggler"
           type="button"

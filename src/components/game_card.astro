@@ -23,6 +23,8 @@ const badge_color =
     : risk_of_extinction === "Médio"
     ? "text-bg-warning"
     : "text-bg-danger";
+
+import BackCardImage from '../assets/img/card-back.png';
 ---
 
 <div class="flip-card">
@@ -36,13 +38,14 @@ const badge_color =
         <span class={`badge ${badge_color}`}>{risk_of_extinction}</span>
       </div>
     </div>
-    <div class="flip-card-front d-flex flex-column justify-content-between">
-      <span class="text-center text-wrap fs-3">Lembre-se de mim</span>
+    <div class="flip-card-front d-flex flex-column justify-content-start">
+      <Image class="card-img-top" src={BackCardImage} alt="Desenho de verso da carta, contendo dois animais centralizados, onça pintada e arara azul, ao fundo uma floresta cortado por um rio" height="200" />
+      <!-- <span class="text-center text-wrap fs-3">Lembre-se de mim</span>
       <br />
       <span class="text-center text-wrap fs-4"
         >Animais em risco de extinção</span
       >
-      <br />
+      <br /> -->
       <span class="text-center text-wrap fs-5">(Clique para virar a carta)</span
       >
     </div>

@@ -11,8 +11,16 @@ import Layout from "../layout/index.astro";
       <input type="email" class="form-control" id="email" required />
     </div>
     <div class="mb-3">
+      <label for="nome" class="form-label">Nome</label>
+      <input type="text" class="form-control" name="nome" required />
+    </div>
+    <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Senha</label>
       <input type="password" class="form-control" id="password" required />
+    </div>
+    <div class="mb-3">
+      <label for="profilePhoto" class="form-label">Foto de perfil</label>
+      <input class="form-control" type="file" id="profilePhoto" />
     </div>
 
     <button type="submit" class="btn btn-primary">Criar conta</button>
@@ -27,16 +35,16 @@ import Layout from "../layout/index.astro";
 </style>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    const form = document.querySelector("#form-login");
-    if (!form) return;
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("#form-login");
+  if (!form) return;
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-      // const email = document.querySelector("#email").value;
-      // const password = document.querySelector("#password").value;
+    // const email = document.querySelector("#email").value;
+    // const password = document.querySelector("#password").value;
 
-      window.location.href = "/";
-    });
+    window.location.href = "/";
   });
+});
 </script>

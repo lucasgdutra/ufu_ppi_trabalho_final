@@ -39,7 +39,7 @@ import { users, animals, games } from "../config/index.ts";
                 />
               </div>
               <div class="mb-3">
-                <label for="nome" class="form-label">nome</label>
+                <label for="nome" class="form-label">Nome</label>
                 <input
                   type="text"
                   class="form-control"
@@ -47,6 +47,23 @@ import { users, animals, games } from "../config/index.ts";
                   name="nome"
                   required
                 />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Senha</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="profilePhoto" class="form-label"
+                  >Foto de perfil</label
+                >
+                <input class="form-control" type="file" id="profilePhoto" />
               </div>
               <button type="submit" class="btn btn-outline-success"
                 >Adicionar</button
@@ -101,7 +118,7 @@ import { users, animals, games } from "../config/index.ts";
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Usuário</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Animal</h1>
             <button
               type="button"
               class="btn-close"
@@ -111,7 +128,7 @@ import { users, animals, games } from "../config/index.ts";
           <div class="modal-body">
             <form id="animal-form" class="mb-3">
               <div class="mb-3">
-                <label for="nome" class="form-label">Email</label>
+                <label for="nome" class="form-label">Nome</label>
                 <input
                   type="text"
                   class="form-control"
@@ -212,7 +229,7 @@ import { users, animals, games } from "../config/index.ts";
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Usuário</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Jogo</h1>
             <button
               type="button"
               class="btn-close"
@@ -222,7 +239,7 @@ import { users, animals, games } from "../config/index.ts";
           <div class="modal-body">
             <form id="game-form" class="mb-3">
               <div class="mb-3">
-                <label for="nome" class="form-label">Email</label>
+                <label for="nome" class="form-label">Nome</label>
                 <input
                   type="text"
                   class="form-control"
@@ -301,23 +318,23 @@ import { users, animals, games } from "../config/index.ts";
   </div>
 
   <script is:inline>
-    document
-      .getElementById("user-form")
-      .addEventListener("submit", function (e) {
-        e.preventDefault();
-      });
+  document
+    .getElementById("user-form")
+    .addEventListener("submit", function (e) {
+      e.preventDefault();
+    });
 
-    document
-      .getElementById("animal-form")
-      .addEventListener("submit", function (e) {
-        e.preventDefault();
-      });
+  document
+    .getElementById("animal-form")
+    .addEventListener("submit", function (e) {
+      e.preventDefault();
+    });
 
-    document
-      .getElementById("game-form")
-      .addEventListener("submit", function (e) {
-        e.preventDefault();
-      });
+  document
+    .getElementById("game-form")
+    .addEventListener("submit", function (e) {
+      e.preventDefault();
+    });
   </script>
 </Layout>
 
